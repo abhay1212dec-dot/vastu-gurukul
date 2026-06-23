@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vastu Gurukul - Learn Astro Vastu, MahaVastu &amp; Numerology</title>
+<meta name="description" content="Vastu Gurukul is a founder-led education platform by Acharya Monica for learning Astro Vastu, MahaVastu, Numerology and practical space reading." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#FFFFFF;           /* page background (now white) */
+    --ink-2:#F6FAF8;         /* light panel */
+    --ocean:#EAF5FA;         /* light blue tint */
+    --emerald:#0E8F6B;       /* green core */
+    --mint:#15A87B;          /* green accent / CTA (reads on white) */
+    --sky:#2E92CC;           /* blue accent / ticks, links */
+    --cream:#0C2233;         /* primary text (dark) */
+    --slate:#5E7686;         /* muted text */
+    --line:rgba(10,30,48,.12);
+    /* tokens for the dark feature panels (hero accents, convergence) */
+    --cream-light:#EAF2EE;   /* light text on dark panels */
+    --slate-light:#9FB6C2;   /* muted text on dark panels */
+    --line-dark:rgba(234,242,238,.14);
+    --maxw:1180px;
+    --display:"Fraunces",Georgia,serif;
+    --body:"Inter",system-ui,-apple-system,sans-serif;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--cream);
+    font-family:var(--body);
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+
+  /* ---------- type ---------- */
+  h1,h2,h3{font-family:var(--display);font-weight:500;line-height:1.08;letter-spacing:-.01em;margin:0;}
+  /* coloured section headings — brand green -> blue gradient */
+  h2{
+    background:linear-gradient(100deg,var(--emerald) 0%,var(--mint) 38%,var(--sky) 100%);
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;
+  }
+  .eyebrow{
+    font-family:var(--body);
+    font-size:12.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--mint);
+    display:inline-flex;align-items:center;gap:12px;
+  }
+  .eyebrow::before{content:"";width:26px;height:1px;background:linear-gradient(90deg,var(--mint),transparent);}
+  p{margin:0 0 1.1em;}
+  .lead{font-size:19px;color:#3A4F5C;}
+  .muted{color:var(--slate);}
+
+  /* ---------- nav ---------- */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 28px;
+    background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,0));
+    backdrop-filter:blur(6px);
+    transition:background .3s ease;
+  }
+  .nav.scrolled{background:rgba(255,255,255,.94);border-bottom:1px solid var(--line);box-shadow:0 4px 20px -16px rgba(10,30,48,.5);}
+  .brand{font-family:var(--display);font-size:20px;letter-spacing:.01em;display:flex;align-items:center;gap:11px;}
+  .brand .glyph{width:22px;height:22px;flex:none;}
+  .brand small{font-family:var(--body);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--slate);font-weight:600;}
+  .nav-cta{
+    font-family:var(--body);font-size:13.5px;font-weight:600;letter-spacing:.02em;
+    padding:10px 20px;border:1px solid rgba(47,224,166,.45);border-radius:100px;color:var(--mint);
+    transition:.25s ease;
+  }
+  .nav-cta:hover{background:var(--mint);color:var(--ink);border-color:var(--mint);}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;
+    background:linear-gradient(135deg,#FFFFFF 0%,#F6FAF8 52%,#EAF5FA 100%);
+  }
+  .hero-bg{position:absolute;inset:0;z-index:0;}
+  .hero-bg svg{width:100%;height:100%;display:block;}
+  .hero-figure{
+    position:absolute;z-index:1;
+    right:5%;bottom:8vh;
+    width:min(48vw,680px);height:min(56svh,540px);object-fit:cover;
+    border:1px solid rgba(10,30,48,.12);border-radius:30px;
+    box-shadow:0 28px 70px -36px rgba(10,30,48,.55);
+    filter:drop-shadow(0 26px 52px rgba(10,30,48,.18));
+    pointer-events:none;user-select:none;
+  }
+  .hero-photo-mobile{display:none;}
+  .hero-veil{position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 42%,rgba(255,255,255,.55) 78%,var(--ink) 100%);pointer-events:none;}
+  .hero-inner{position:relative;z-index:3;width:100%;padding-bottom:6vh;}
+  .hero-inner .wrap{display:block;}
+  .hero h1{font-size:clamp(44px,6.6vw,84px);max-width:12ch;margin:18px 0 0;}
+  .hero h1 em{font-style:italic;color:var(--mint);}
+  .hero .lead{max-width:43ch;margin-top:22px;}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px;}
+  .btn{
+    font-family:var(--body);font-size:15px;font-weight:600;letter-spacing:.01em;
+    padding:15px 30px;border-radius:100px;transition:.25s ease;cursor:pointer;border:1px solid transparent;
+  }
+  .btn-primary{background:linear-gradient(120deg,var(--mint),var(--emerald));color:#04231A;}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 34px -14px rgba(47,224,166,.7);}
+  .btn-ghost{border-color:var(--line);color:var(--cream);}
+  .btn-ghost:hover{border-color:var(--sky);color:var(--sky);}
+
+  /* ---------- positioning strip ---------- */
+  .strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--ink-2);}
+  .strip .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
+  .strip .cell{padding:30px 28px;border-left:1px solid var(--line);}
+  .strip .cell:first-child{border-left:none;padding-left:0;}
+  .strip .k{font-family:var(--display);font-size:30px;color:var(--mint);line-height:1;}
+  .strip .v{font-size:13.5px;color:var(--slate);margin-top:9px;letter-spacing:.02em;}
+
+  /* ---------- section base ---------- */
+  section{position:relative;}
+  .sec{padding:108px 0;}
+  .sec-head{max-width:60ch;margin-bottom:54px;}
+  .sec-head h2{font-size:clamp(30px,4vw,46px);margin-top:16px;}
+  .sec-head p{margin-top:18px;}
+
+  /* ---------- what is astro vastu (compass) ---------- */
+  .explain{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center;}
+  .explain .copy h2{font-size:clamp(28px,3.6vw,42px);margin-top:16px;}
+  .explain .copy p{margin-top:18px;}
+  .compass-card{
+    aspect-ratio:1;width:100%;max-width:440px;margin:0 auto;
+    display:grid;place-items:center;position:relative;
+  }
+  .compass-card svg{width:100%;height:auto;overflow:visible;}
+  .ring-rotate{transform-origin:200px 200px;animation:spin 60s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  /* ---------- method ---------- */
+  .method{background:var(--ink-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  .card{
+    background:linear-gradient(160deg,rgba(21,168,123,.06),rgba(46,146,204,.05));
+    border:1px solid var(--line);border-radius:16px;padding:30px 28px;
+    transition:.3s ease;
+  }
+  .card:hover{border-color:rgba(21,168,123,.5);transform:translateY(-4px);box-shadow:0 18px 40px -28px rgba(10,30,48,.5);}
+  .card .ic{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;background:rgba(21,168,123,.12);margin-bottom:18px;}
+  .card .ic svg{width:22px;height:22px;}
+  .card h3{font-size:21px;margin-bottom:9px;}
+  .card p{font-size:15px;color:var(--slate);margin:0;}
+
+  /* ---------- learning photos ---------- */
+  .proof{background:linear-gradient(180deg,#fff 0%,var(--ink-2) 100%);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .proof-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:stretch;}
+  .proof-main,.proof-side{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 22px 60px -46px rgba(10,30,48,.55);}
+  .proof-main img,.proof-side img{width:100%;height:100%;object-fit:cover;}
+  .proof-main{min-height:430px;}
+  .proof-stack{display:grid;gap:24px;}
+  .proof-side{min-height:203px;position:relative;}
+  .caption{
+    position:absolute;left:18px;right:18px;bottom:18px;padding:14px 16px;border-radius:14px;
+    background:rgba(255,255,255,.88);backdrop-filter:blur(8px);border:1px solid rgba(10,30,48,.1);
+    font-size:13.5px;color:var(--slate);
+  }
+  .caption strong{display:block;color:var(--cream);font-size:15px;margin-bottom:3px;}
+
+  /* ---------- about ---------- */
+  .about{display:grid;grid-template-columns:.85fr 1.15fr;gap:64px;align-items:center;}
+  .portrait{
+    aspect-ratio:4/5;border-radius:20px;min-height:430px;
+    background:
+      linear-gradient(180deg,rgba(255,255,255,0) 55%,rgba(10,30,48,.28) 100%),
+      url("images/monica-portrait.png") center top / cover no-repeat;
+    border:1px solid rgba(10,30,48,.12);
+    box-shadow:0 24px 70px -42px rgba(10,30,48,.55);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:24px;
+  }
+  .portrait .ph-ring,.portrait .ph-label{display:none;}
+  .portrait .ph-ring{width:50px;height:50px;border-radius:50%;border:1.5px solid rgba(90,183,230,.5);display:grid;place-items:center;}
+  .portrait .ph-ring svg{width:22px;height:22px;}
+  .portrait .ph-label{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);font-weight:600;}
+  .about h2{font-size:clamp(28px,3.6vw,42px);margin-top:16px;}
+  .about p{margin-top:18px;}
+  .creds{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:14px;}
+  .creds li{display:flex;gap:14px;align-items:flex-start;font-size:15px;}
+  .creds .dot{flex:none;width:8px;height:8px;border-radius:50%;background:var(--mint);margin-top:9px;box-shadow:0 0 0 4px rgba(47,224,166,.15);}
+
+  /* ---------- services ---------- */
+  .services{background:var(--ink-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:18px;overflow:hidden;}
+  .svc{background:var(--ink);padding:38px 34px;transition:.3s ease;}
+  .svc:hover{background:rgba(21,168,123,.07);}
+  .svc .no{font-family:var(--display);font-size:14px;color:var(--sky);letter-spacing:.05em;}
+  .svc h3{font-size:23px;margin:12px 0 10px;}
+  .svc p{font-size:15px;color:var(--slate);margin:0;}
+  .svc .meta{display:inline-flex;margin-top:18px;padding:7px 10px;border-radius:999px;background:rgba(21,168,123,.09);color:var(--emerald);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;}
+
+  /* ---------- consultation ---------- */
+  .consultation{padding:72px 0;background:#fff;}
+  .consult-box{
+    display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center;
+    border:1px solid var(--line);border-radius:18px;padding:34px;
+    background:linear-gradient(135deg,rgba(21,168,123,.07),rgba(46,146,204,.07));
+  }
+  .consult-box h2{font-size:clamp(26px,3.2vw,38px);}
+  .consult-box p{max-width:62ch;margin:12px 0 0;color:var(--slate);}
+
+  /* ---------- testimonials ---------- */
+  .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .quote{border:1px solid var(--line);border-radius:16px;padding:30px 28px;background:linear-gradient(160deg,rgba(21,168,123,.05),transparent);}
+  .quote .mark{font-family:var(--display);font-size:46px;line-height:0;color:var(--emerald);display:block;height:20px;}
+  .quote p{font-size:15.5px;color:#33485A;margin:14px 0 18px;}
+  .quote .who{font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--mint);}
+  .quote .who span{display:block;color:var(--slate);font-weight:400;letter-spacing:.02em;margin-top:2px;}
+
+  /* ---------- contact / footer ---------- */
+  .contact{padding:104px 0 0;text-align:center;}
+  .contact h2{font-size:clamp(32px,5vw,58px);max-width:18ch;margin:18px auto 0;}
+  .contact .lead{max-width:48ch;margin:20px auto 34px;}
+  .contact-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+  .note{font-size:12.5px;color:var(--slate);margin-top:24px;letter-spacing:.02em;}
+  footer{margin-top:100px;border-top:1px solid var(--line);padding:34px 0;}
+  footer .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+  .foot-brand{font-family:var(--display);font-size:18px;}
+  .foot-links{display:flex;gap:22px;font-size:13.5px;color:var(--slate);}
+  .foot-links a{transition:.2s;}
+  .foot-links a:hover{color:var(--mint);}
+
+  /* ---------- convergence (signature animation) ---------- */
+  .convergence{
+    background:radial-gradient(120% 90% at 50% 30%,#0B3050 0%,#08203A 45%,#07182B 100%);
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    overflow:hidden;color:var(--cream-light);
+  }
+  .convergence h2{background:linear-gradient(100deg,#2FE0A6 0%,#7FE9C4 40%,#5AB7E6 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;}
+  .convergence .lead{color:#CFDDE5;}
+  .convergence .sec-head{margin:0 auto 8px;text-align:center;}
+  .convergence .sec-head .eyebrow{justify-content:center;}
+  .convergence .sec-head h2{font-size:clamp(30px,4.4vw,50px);}
+  .convergence .sec-head p{margin-left:auto;margin-right:auto;}
+
+  .constellation{
+    position:relative;width:100%;max-width:760px;margin:34px auto 0;
+    aspect-ratio:1/0.82;perspective:1200px;
+  }
+  .stage{
+    position:absolute;inset:0;transform-style:preserve-3d;
+    transition:transform .35s cubic-bezier(.2,.7,.2,1);will-change:transform;
+  }
+  .stage canvas{position:absolute;inset:0;width:100%;height:100%;}
+
+  .core{
+    position:absolute;left:50%;top:50%;width:148px;height:148px;
+    transform:translate(-50%,-50%) scale(.6);opacity:0;
+    border-radius:50%;display:grid;place-items:center;text-align:center;
+    background:radial-gradient(circle at 50% 42%,rgba(47,224,166,.30),rgba(12,58,92,.25) 60%,transparent 72%);
+    box-shadow:0 0 0 1px rgba(47,224,166,.35) inset,0 0 60px -10px rgba(47,224,166,.5);
+    transition:transform 1s cubic-bezier(.16,1,.3,1),opacity 1s ease;
+  }
+  .core .ring{position:absolute;inset:14px;border-radius:50%;border:1px solid rgba(90,183,230,.4);}
+  .core b{font-family:var(--display);font-weight:500;font-size:23px;color:var(--cream-light);letter-spacing:.02em;line-height:1;}
+  .core span{display:block;font-family:var(--body);font-size:10px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--mint);margin-top:8px;}
+
+  .node{
+    position:absolute;transform:translate(-50%,-50%) translateY(10px);
+    width:128px;display:flex;flex-direction:column;align-items:center;gap:9px;text-align:center;
+    opacity:0;transition:opacity .6s ease,transform .6s cubic-bezier(.16,1,.3,1);
+  }
+  .node .disc{
+    width:56px;height:56px;border-radius:50%;display:grid;place-items:center;
+    background:rgba(8,32,56,.72);border:1px solid rgba(90,183,230,.35);
+    backdrop-filter:blur(3px);transition:.3s ease;
+  }
+  .node .disc svg{width:26px;height:26px;}
+  .node .lab{font-family:var(--display);font-size:16px;font-weight:500;letter-spacing:.01em;color:var(--cream-light);line-height:1.1;}
+  .node .sub{font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--slate-light);}
+  .node:hover .disc{border-color:var(--mint);box-shadow:0 0 26px -6px rgba(47,224,166,.7);transform:translateY(-3px);}
+
+  .constellation.lit .core{transform:translate(-50%,-50%) scale(1);opacity:1;}
+  .constellation.lit .node{opacity:1;transform:translate(-50%,-50%) translateY(0);}
+  .constellation.lit .node{transition-delay:calc(.5s + var(--d,0)*.12s);}
+
+  .journey{
+    text-align:center;max-width:52ch;margin:42px auto 0;
+    font-family:var(--display);font-style:italic;font-size:19px;color:#B9CCD6;
+  }
+
+  @media(max-width:560px){
+    .constellation{max-width:360px;aspect-ratio:1/1.04;}
+    .node{width:96px;gap:6px;}
+    .node .disc{width:46px;height:46px;}
+    .node .disc svg{width:21px;height:21px;}
+    .node .lab{font-size:11.5px;}
+    .node .sub{font-size:9px;letter-spacing:.1em;}
+    .core{width:118px;height:118px;}
+    .core b{font-size:16px;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .stage{transition:none;}
+    .core,.node{transition:none;}
+  }
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;}
+  .reveal.in{opacity:1;transform:none;}
+
+  /* ---------- focus ---------- */
+  a:focus-visible,.btn:focus-visible{outline:2px solid var(--sky);outline-offset:3px;border-radius:4px;}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:880px){
+    .explain,.about{grid-template-columns:1fr;gap:42px;}
+    .grid-3,.quotes{grid-template-columns:1fr;}
+    .svc-grid{grid-template-columns:1fr;}
+    .strip .wrap{grid-template-columns:1fr;}
+    .strip .cell{border-left:none;border-top:1px solid var(--line);padding-left:0;}
+    .strip .cell:first-child{border-top:none;}
+    .compass-card{max-width:340px;}
+    .about{direction:ltr;}
+    .portrait{max-width:360px;margin:0 auto;}
+    .sec{padding:78px 0;}
+    .hero-figure{right:-2%;width:min(50vw,500px);height:min(46svh,420px);opacity:.95;}
+    .proof-grid{grid-template-columns:1fr;}
+    .consult-box{grid-template-columns:1fr;}
+    .hero h1{max-width:11ch;}
+    .nav-cta{display:none;}
+  }
+  @media(max-width:520px){
+    body{font-size:16px;}
+    .hero{align-items:flex-start;min-height:auto;padding-bottom:44px;}
+    .hero-inner{padding-top:104px;padding-bottom:0;}
+    .hero > .hero-figure{display:none;}
+    .hero-photo-mobile{
+      display:block;width:min(86vw,340px);height:230px;object-fit:cover;margin:24px auto 0;
+      border:1px solid rgba(10,30,48,.12);border-radius:22px;
+      box-shadow:0 22px 60px -36px rgba(10,30,48,.55);
+    }
+    .hero h1{font-size:clamp(42px,13vw,54px);max-width:9ch;}
+    .hero .lead{max-width:100%;font-size:16.5px;}
+    .hero-actions{margin-top:22px;}
+    .btn{padding:13px 20px;font-size:14px;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .ring-rotate{animation:none;}
+    .reveal{transition:none;opacity:1;transform:none;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a class="brand" href="#top">
+    <svg class="glyph" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="2" y="2" width="20" height="20" rx="3" stroke="#2FE0A6" stroke-width="1.4"/>
+      <path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19" stroke="#5AB7E6" stroke-width="1" opacity=".55"/>
+      <circle cx="12" cy="12" r="2.4" fill="#2FE0A6"/>
+    </svg>
+    <span>Vastu Gurukul<br><small>School of Astro Vastu &amp; MahaVastu</small></span>
+  </a>
+  <a class="nav-cta" href="#contact">Apply for next batch</a>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-bg" aria-hidden="true">
+    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#FFFFFF"/>
+          <stop offset="0.58" stop-color="#F6FAF8"/>
+          <stop offset="1" stop-color="#EAF5FA"/>
+        </linearGradient>
+        <radialGradient id="stage" cx="50%" cy="58%" r="55%">
+          <stop offset="0" stop-color="#15A87B" stop-opacity="0.26"/>
+          <stop offset="0.35" stop-color="#2E92CC" stop-opacity="0.14"/>
+          <stop offset="1" stop-color="#0E8F6B" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="beamL" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#5AB7E6" stop-opacity="0.0"/>
+          <stop offset="1" stop-color="#2E92CC" stop-opacity="0.12"/>
+        </linearGradient>
+        <linearGradient id="beamR" x1="1" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#2FE0A6" stop-opacity="0.0"/>
+          <stop offset="1" stop-color="#15A87B" stop-opacity="0.12"/>
+        </linearGradient>
+      </defs>
+
+      <rect width="1440" height="900" fill="url(#sky)"/>
+
+      <!-- spotlight beams converging on the speaker -->
+      <polygon points="600,-40 980,560 720,560" fill="url(#beamL)"/>
+      <polygon points="1260,-40 1180,560 940,560" fill="url(#beamR)"/>
+
+      <!-- stage glow behind speaker -->
+      <ellipse cx="950" cy="560" rx="520" ry="300" fill="url(#stage)"/>
+
+      <!-- crowd: layered silhouettes (generic audience) -->
+      <g fill="#BFD6E2" opacity="0.35">
+        <!-- back row -->
+        <g opacity="0.6">
+          <!-- generated via simple repetition -->
+        </g>
+      </g>
+      <g id="crowd"></g>
+    </svg>
+  </div>
+
+  <!-- learning environment -->
+  <img class="hero-figure" src="images/classroom-hero.png" alt="Vastu Gurukul classroom with adult learners studying floor plans and Vastu diagrams" />
+
+  <div class="hero-veil" aria-hidden="true"></div>
+
+  <div class="hero-inner">
+    <div class="wrap">
+      <span class="eyebrow reveal">Astro Vastu, MahaVastu &amp; Numerology education</span>
+      <h1 class="reveal">Learn Vastu as a <em>complete system.</em></h1>
+      <p class="lead reveal">Vastu Gurukul is a founder-led learning platform where students study space, direction, birth charts, numbers and practical remedies together under Acharya Monica.</p>
+      <div class="hero-actions reveal">
+        <a class="btn btn-primary" href="#programs">Explore learning programs</a>
+        <a class="btn btn-ghost" href="#consultation">Invite-only consultation</a>
+      </div>
+      <img class="hero-photo-mobile reveal" src="images/classroom-hero.png" alt="Vastu Gurukul classroom with adult learners studying floor plans and Vastu diagrams" />
+    </div>
+  </div>
+</header>
+
+<!-- POSITIONING STRIP -->
+<section class="strip">
+  <div class="wrap">
+    <div class="cell"><div class="k">Founder-led</div><div class="v">Learn directly from Acharya Monica and her applied method</div></div>
+    <div class="cell"><div class="k">6 sciences</div><div class="v">Astrology, Numerology, Vedic Science, Vastu, Astro Vastu &amp; Angel Cards</div></div>
+    <div class="cell"><div class="k">Case-based</div><div class="v">Practice on floor plans, remedies and real-life space problems</div></div>
+  </div>
+</section>
+
+<!-- WHAT STUDENTS LEARN -->
+<section class="sec" id="what">
+  <div class="wrap explain">
+    <div class="copy reveal">
+      <span class="eyebrow">What you learn</span>
+      <h2>Move beyond tips. Learn how to read a space.</h2>
+      <p class="lead">Most people collect scattered Vastu rules from videos and family advice. Vastu Gurukul teaches the deeper structure: how directions, elements, charts, numbers and remedies work together in one reading.</p>
+      <p class="muted">Students learn how to divide a space into zones, understand the energy of each direction, read floor plans, connect a space to the person living or working there, and choose practical remedies that do not require demolition.</p>
+    </div>
+
+    <div class="compass-card reveal">
+      <svg viewBox="0 0 400 400" role="img" aria-label="A sixteen-zone Vastu compass diagram">
+        <defs>
+          <radialGradient id="cglow" cx="50%" cy="50%" r="50%">
+            <stop offset="0" stop-color="#2FE0A6" stop-opacity="0.35"/>
+            <stop offset="1" stop-color="#2FE0A6" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <circle cx="200" cy="200" r="150" fill="url(#cglow)"/>
+
+        <!-- rotating dotted outer ring -->
+        <g class="ring-rotate">
+          <circle cx="200" cy="200" r="178" fill="none" stroke="#5AB7E6" stroke-width="1" stroke-dasharray="2 9" opacity="0.6"/>
+        </g>
+
+        <!-- concentric rings -->
+        <circle cx="200" cy="200" r="150" fill="none" stroke="#1E5276" stroke-width="1"/>
+        <circle cx="200" cy="200" r="110" fill="none" stroke="#1E5276" stroke-width="1" opacity="0.7"/>
+        <circle cx="200" cy="200" r="62" fill="none" stroke="#1E5276" stroke-width="1" opacity="0.5"/>
+
+        <!-- 16 sector dividers -->
+        <g stroke="#1E5276" stroke-width="1" opacity="0.55" id="spokes"></g>
+
+        <!-- cardinal + ordinal labels -->
+        <g font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#0C2233" text-anchor="middle">
+          <text x="200" y="40">N</text>
+          <text x="360" y="205">E</text>
+          <text x="200" y="375">S</text>
+          <text x="40" y="205">W</text>
+        </g>
+        <g font-family="Inter, sans-serif" font-size="10.5" font-weight="500" fill="#5AB7E6" text-anchor="middle" opacity="0.85">
+          <text x="313" y="92">NE</text>
+          <text x="313" y="320">SE</text>
+          <text x="88" y="320">SW</text>
+          <text x="88" y="92">NW</text>
+        </g>
+
+        <!-- Brahmasthan -->
+        <circle cx="200" cy="200" r="9" fill="#2FE0A6"/>
+        <circle cx="200" cy="200" r="9" fill="none" stroke="#2FE0A6" stroke-width="1" opacity="0.5">
+          <animate attributeName="r" values="9;26;9" dur="3.6s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.5;0;0.5" dur="3.6s" repeatCount="indefinite"/>
+        </circle>
+        <text x="200" y="240" font-family="Fraunces, serif" font-size="11" fill="#5E7686" text-anchor="middle" font-style="italic">Brahmasthan</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- LEARNING ENVIRONMENT -->
+<section class="sec proof" id="learn">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Inside the Gurukul</span>
+      <h2>Learn through live teaching, floor plans and guided practice.</h2>
+      <p class="muted">Vastu Gurukul is built like a real school — structured classes, practical study material, small-group mentorship and applied case discussions you actually work through.</p>
+    </div>
+    <div class="proof-grid">
+      <div class="proof-main reveal">
+        <img src="images/classroom-hero.png" alt="Vastu Gurukul classroom session with adult learners studying floor plans" />
+      </div>
+      <div class="proof-stack">
+        <div class="proof-side reveal">
+          <img src="images/learning-materials.png" alt="Floor plan and Vastu learning materials on a study table" />
+          <div class="caption"><strong>Practical material</strong>Floor plans, zones, charts and remedies taught through real examples.</div>
+        </div>
+        <div class="proof-side reveal">
+          <img src="images/mentorship-circle.png" alt="Small mentorship circle for Vastu Gurukul students" />
+          <div class="caption"><strong>Mentorship format</strong>Small group learning for students who want guidance, not just content.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY VASTU GURUKUL - THE CONVERGENCE -->
+<section class="sec convergence" id="why">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">What you'll study</span>
+      <h2>Six sciences, learned as one.</h2>
+      <p class="lead">You won't study six subjects in isolation. At Vastu Gurukul, astrology, numerology, Vedic science, Vastu, Astro Vastu and angel card reading come together into a single integrated practice — MahaVastu. The map below shows how each discipline feeds the centre.</p>
+    </div>
+
+    <div class="constellation" id="constellation" aria-label="Six disciplines converging into MahaVastu">
+      <div class="stage" id="cvstage">
+        <canvas id="cv"></canvas>
+
+        <div class="core" id="core">
+          <span class="ring" aria-hidden="true"></span>
+          <div><b>MahaVastu</b><span>Integrated</span></div>
+        </div>
+
+        <!-- nodes: positioned by JS; order sets ring placement clockwise from top -->
+        <div class="node" style="--d:0">
+          <span class="disc" style="color:#5AB7E6"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="1.4"/><ellipse cx="12" cy="12" rx="10" ry="4.2" stroke="currentColor" stroke-width="1.2" transform="rotate(-25 12 12)"/><circle cx="20" cy="7.6" r="1.1" fill="currentColor"/></svg></span>
+          <span class="lab">Astrology</span><span class="sub">The timing</span>
+        </div>
+        <div class="node" style="--d:1">
+          <span class="disc" style="color:#2FE0A6"><svg viewBox="0 0 24 24" fill="none"><g stroke="currentColor" stroke-width="1.3"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 4v16M15 4v16M4 9h16M4 15h16"/></g><circle cx="7" cy="7" r="1" fill="currentColor"/><circle cx="17" cy="17" r="1" fill="currentColor"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg></span>
+          <span class="lab">Numerology</span><span class="sub">The numbers</span>
+        </div>
+        <div class="node" style="--d:2">
+          <span class="disc" style="color:#5AB7E6"><svg viewBox="0 0 24 24" fill="none"><rect x="3.5" y="6" width="11" height="14" rx="1.6" stroke="currentColor" stroke-width="1.3" transform="rotate(-9 9 13)"/><rect x="9.5" y="4.5" width="11" height="14" rx="1.6" stroke="currentColor" stroke-width="1.3" transform="rotate(9 15 11)"/><path d="M15 8.5l1.1 2.2 2.4.3-1.8 1.7.5 2.4-2.2-1.2-2.2 1.2.5-2.4-1.8-1.7 2.4-.3z" fill="currentColor"/></svg></span>
+          <span class="lab">Angel Cards</span><span class="sub">The intuition</span>
+        </div>
+        <div class="node" style="--d:3">
+          <span class="disc" style="color:#2FE0A6"><svg viewBox="0 0 24 24" fill="none"><g stroke="currentColor" stroke-width="1.4"><path d="M4 20V9l8-5 8 5v11"/><path d="M4 20h16"/><path d="M10 20v-5h4v5"/></g></svg></span>
+          <span class="lab">Vastu</span><span class="sub">The space</span>
+        </div>
+        <div class="node" style="--d:4">
+          <span class="disc" style="color:#2FE0A6"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.3"/><path d="M12 5l2.2 4.8L19 12l-4.8 2.2L12 19l-2.2-4.8L5 12l4.8-2.2z" fill="currentColor" opacity=".9"/></svg></span>
+          <span class="lab">Astro Vastu</span><span class="sub">Space + chart</span>
+        </div>
+        <div class="node" style="--d:5">
+          <span class="disc" style="color:#5AB7E6"><svg viewBox="0 0 24 24" fill="none"><g stroke="currentColor" stroke-width="1.3"><path d="M12 3v18M12 21c-3.5-2-5-5-5-9 0-2 .8-3.6 5-9 4.2 5.4 5 7 5 9 0 4-1.5 7-5 9z"/><path d="M7.2 12h9.6"/></g></svg></span>
+          <span class="lab">Vedic Science</span><span class="sub">The roots</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="journey reveal">A ten-year teacher's journey, converted into one structured curriculum.</p>
+  </div>
+</section>
+
+<!-- METHOD -->
+<section class="sec method">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Learning path</span>
+      <h2>From foundation to confident application.</h2>
+      <p class="muted">Your path runs from curiosity to structured learning, then into practical mentorship — so you move from understanding the ideas to confidently applying them on real spaces.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card reveal">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.5-7-10a7 7 0 0114 0c0 5.5-7 10-7 10z" stroke="#2FE0A6" stroke-width="1.4"/><circle cx="12" cy="11" r="2.4" stroke="#2FE0A6" stroke-width="1.4"/></svg></span>
+        <h3>Learn the foundation</h3>
+        <p>Understand directions, elements, zones, floor plans and the logic behind Astro Vastu before moving into advanced remedies.</p>
+      </div>
+      <div class="card reveal">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M4 20V8l8-5 8 5v12" stroke="#2FE0A6" stroke-width="1.4"/><path d="M4 20h16M9 20v-6h6v6" stroke="#2FE0A6" stroke-width="1.4"/></svg></span>
+        <h3>Practice on cases</h3>
+        <p>Work through homes, offices and commercial spaces using layouts, chart context and practical remedy decisions.</p>
+      </div>
+      <div class="card reveal">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1" stroke="#2FE0A6" stroke-width="1.4" stroke-linecap="round"/><circle cx="12" cy="12" r="3" stroke="#2FE0A6" stroke-width="1.4"/></svg></span>
+        <h3>Enter mentorship</h3>
+        <p>Students who want deeper application can move into smaller guided groups with reviews, doubt clearing and live case discussion.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="sec" id="about">
+  <div class="wrap about">
+    <div class="portrait reveal" role="img" aria-label="Portrait of Acharya Monica, founder and main teacher at Vastu Gurukul"></div>
+    <div class="reveal">
+      <span class="eyebrow">Founder &amp; Main Teacher</span>
+      <h2>Acharya Monica is the teacher behind the method.</h2>
+      <p>Monica came to Vastu the analytical way. After a Masters in Business Administration from Delhi University, she trained as an Acharya in Astro-MahaVastu at the renowned MahaVastu Gurukul, under its founder Vastu Shastri Khushdeep Bansal.</p>
+      <p class="muted">She founded Vastu Gurukul to turn years of applied consulting into a teachable system. The goal is not only to solve spaces for clients, but to help students understand the logic well enough to read spaces with discipline and confidence.</p>
+      <ul class="creds">
+        <li><span class="dot"></span><div><strong>Founder of Vastu Gurukul</strong> - the main teacher and mentor behind the learning platform</div></li>
+        <li><span class="dot"></span><div><strong>MBA, Delhi University</strong> - an analytical foundation behind every reading</div></li>
+        <li><span class="dot"></span><div><strong>Certified Astro-MahaVastu Acharya</strong> - trained at MahaVastu Gurukul under Khushdeep Bansal</div></li>
+        <li><span class="dot"></span><div><strong>A decade of practice</strong> - applied across corporates, homes &amp; commercial spaces</div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section class="sec services" id="programs">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Learning programs</span>
+      <h2>Choose the path that matches your depth.</h2>
+      <p class="muted">Start where you are. Each track builds on the one before it — from your first principles to applied, mentor-guided practice.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc reveal"><div class="no">01</div><h3>Foundation Program</h3><p>For beginners who want a structured introduction to directions, elements, zones, Vastu logic and the language of space.</p><span class="meta">Start here</span></div>
+      <div class="svc reveal"><div class="no">02</div><h3>Astro Vastu Practitioner Track</h3><p>For serious learners who want to combine floor plans, birth charts, planetary influence and practical remedy decisions.</p><span class="meta">Core track</span></div>
+      <div class="svc reveal"><div class="no">03</div><h3>Numerology &amp; Space Reading</h3><p>For students who want to understand how numbers, names, dates and spatial energy can be read together with discipline.</p><span class="meta">Specialized</span></div>
+      <div class="svc reveal"><div class="no">04</div><h3>Mentorship Circle</h3><p>Small-group guidance for applied case studies, doubt clearing and deeper practice with Monica once the foundation is clear.</p><span class="meta">Application based</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONSULTATION -->
+<section class="consultation" id="consultation">
+  <div class="wrap">
+    <div class="consult-box reveal">
+      <div>
+        <span class="eyebrow">Private consultation</span>
+        <h2>Need Monica to read your own space?</h2>
+        <p>Beyond the classroom, Acharya Monica takes a limited number of private consultations for students, families and business owners who want their own space read directly — by request.</p>
+      </div>
+      <a class="btn btn-ghost" href="#contact">Request an invitation</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="sec" id="words">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">From Monica's practice</span>
+      <h2>Real outcomes behind the teaching.</h2>
+      <p class="muted">These come from Acharya Monica's consulting practice — the same method our students learn to read and apply.</p>
+    </div>
+    <div class="quotes">
+      <div class="quote reveal">
+        <span class="mark">&ldquo;</span>
+        <p>She guided our team on direction, seating and positioning. After her visit the workplace felt calmer, and the energy and enthusiasm across the team clearly lifted. Strongly recommend.</p>
+        <div class="who">Sheenu Gupta<span>PestCure Incorporation</span></div>
+      </div>
+      <div class="quote reveal">
+        <span class="mark">&ldquo;</span>
+        <p>Monica is very professional and takes her time, doing a detailed analysis before advising. Her remedies are simple yet very effective, and she's available afterwards for any doubts.</p>
+        <div class="who">Ajeet Kumar<span>Residential consultation</span></div>
+      </div>
+      <div class="quote reveal">
+        <span class="mark">&ldquo;</span>
+        <p>So down to earth and always ready to help. The guidance I received was genuinely transformative, one of the most positive, humble people I've met.</p>
+        <div class="who">Soniya Rao<span>Home consultation</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT / FOOTER -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <span class="eyebrow reveal" style="justify-content:center;">Begin learning</span>
+    <h2 class="reveal">Apply for the next Vastu Gurukul batch.</h2>
+    <p class="lead reveal">Share your learning goal, current background and the level you want to study. Vastu Gurukul can guide you toward the right program or mentorship path.</p>
+    <div class="contact-actions reveal">
+      <a class="btn btn-primary" href="#">Apply for learning programs</a>
+      <a class="btn btn-ghost" href="#consultation">Ask about consultation</a>
+    </div>
+    <p class="note">Every enquiry is read personally — we'll guide you to the right program or batch.</p>
+  </div>
+  <footer>
+    <div class="wrap">
+      <span class="foot-brand">Vastu Gurukul</span>
+      <div class="foot-links">
+        <a href="#about">About</a>
+        <a href="#programs">Programs</a>
+        <a href="#contact">Contact</a>
+        <a href="#" aria-label="Facebook">Facebook</a>
+        <a href="#" aria-label="LinkedIn">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+</section>
+
+<script>
+  // nav background on scroll
+  var nav=document.getElementById('nav');
+  addEventListener('scroll',function(){nav.classList.toggle('scrolled',scrollY>40);});
+
+  // build 16 spokes for the compass
+  (function(){
+    var g=document.getElementById('spokes');
+    if(!g)return;
+    var cx=200,cy=200,r=150,ns='http://www.w3.org/2000/svg';
+    for(var i=0;i<16;i++){
+      var a=(i/16)*Math.PI*2;
+      var l=document.createElementNS(ns,'line');
+      l.setAttribute('x1',cx);l.setAttribute('y1',cy);
+      l.setAttribute('x2',cx+Math.sin(a)*r);
+      l.setAttribute('y2',cy-Math.cos(a)*r);
+      g.appendChild(l);
+    }
+  })();
+
+  // build a simple crowd of silhouettes in the hero
+  (function(){
+    var g=document.getElementById('crowd');
+    if(!g)return;
+    var ns='http://www.w3.org/2000/svg';
+    var rows=[{y:760,s:1.0,o:.9,n:13},{y:710,s:.82,o:.7,n:16},{y:672,s:.66,o:.5,n:20}];
+    rows.forEach(function(row){
+      var gap=1440/row.n;
+      for(var i=0;i<row.n;i++){
+        var x=gap*i+gap/2+(Math.random()*gap*0.3-gap*0.15);
+        var hr=10*row.s, bw=30*row.s, bh=46*row.s;
+        var head=document.createElementNS(ns,'circle');
+        head.setAttribute('cx',x);head.setAttribute('cy',row.y-bh*0.55);
+        head.setAttribute('r',hr);head.setAttribute('fill','#BFD6E2');head.setAttribute('opacity',row.o);
+        var body=document.createElementNS(ns,'path');
+        var bx=x-bw/2, by=row.y-bh*0.25;
+        body.setAttribute('d','M'+bx+' '+row.y+' Q'+bx+' '+by+' '+x+' '+by+' Q'+(bx+bw)+' '+by+' '+(bx+bw)+' '+row.y+' Z');
+        body.setAttribute('fill','#BFD6E2');body.setAttribute('opacity',row.o);
+        g.appendChild(body);g.appendChild(head);
+      }
+    });
+  })();
+
+  // scroll reveal
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:.14});
+  document.querySelectorAll('.reveal').forEach(function(el,i){
+    el.style.transitionDelay=(i%4)*60+'ms';
+    io.observe(el);
+  });
+</script>
+<script>
+/* ===== The Convergence — signature animation ===== */
+(function(){
+  var wrap=document.getElementById('constellation');
+  if(!wrap)return;
+  var stage=document.getElementById('cvstage');
+  var core=document.getElementById('core');
+  var canvas=document.getElementById('cv');
+  var ctx=canvas.getContext('2d');
+  var nodes=Array.prototype.slice.call(stage.querySelectorAll('.node'));
+  var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  var W=0,H=0,dpr=Math.min(devicePixelRatio||1,2);
+  var cx=0,cy=0,rx=0,ry=0;
+  var pts=[];                 // node anchor points (px, css space)
+  var particles=[];
+  var progress=0;             // 0..1 line-draw on reveal
+  var lit=false, running=false, energy=0, t0=0;
+  var hover=-1;
+  var MINT=[47,224,166], SKY=[90,183,230];
+
+  function layout(){
+    var r=wrap.getBoundingClientRect();
+    W=r.width; H=r.height;
+    canvas.width=W*dpr; canvas.height=H*dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    cx=W/2; cy=H/2;
+    rx=W*(W<420?0.40:0.40); ry=H*0.40;
+    pts=nodes.map(function(n,i){
+      var a=(-90 + i*60)*Math.PI/180;        // clockwise from top
+      var x=cx+Math.cos(a)*rx, y=cy+Math.sin(a)*ry;
+      n.style.left=x+'px'; n.style.top=y+'px';
+      return {x:x,y:y,a:a};
+    });
+    core.style.left=cx+'px'; core.style.top=cy+'px';
+  }
+
+  function spawn(i){
+    var p=pts[i];
+    particles.push({
+      i:i, t:0,
+      sp:0.0045+Math.random()*0.0065,
+      wob:(Math.random()*2-1),
+      ph:Math.random()*Math.PI*2,
+      sz:0.8+Math.random()*1.6,
+      col:Math.random()<0.5?MINT:SKY
+    });
+  }
+
+  function ease(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;}
+
+  function draw(now){
+    if(!running)return;
+    var dt=Math.min((now-t0),48); t0=now;
+    ctx.clearRect(0,0,W,H);
+
+    if(progress<1) progress=Math.min(1,progress+dt/900);
+
+    // connecting lines (draw from core outward as progress grows)
+    for(var i=0;i<pts.length;i++){
+      var p=pts[i];
+      var ex=cx+(p.x-cx)*progress, ey=cy+(p.y-cy)*progress;
+      var g=ctx.createLinearGradient(cx,cy,p.x,p.y);
+      var hot=(hover===i);
+      g.addColorStop(0,'rgba(47,224,166,'+(hot?.55:.32)+')');
+      g.addColorStop(1,'rgba(90,183,230,'+(hot?.30:.10)+')');
+      ctx.strokeStyle=g; ctx.lineWidth=hot?1.7:1; ctx.beginPath();
+      ctx.moveTo(cx,cy); ctx.lineTo(ex,ey); ctx.stroke();
+    }
+
+    // particles flow node -> core
+    if(progress>=0.55){
+      for(var k=0;k<pts.length;k++){
+        var want=(hover===k?9:6);
+        var have=particles.filter(function(q){return q.i===k;}).length;
+        if(have<want && Math.random()<0.5) spawn(k);
+      }
+    }
+    ctx.globalCompositeOperation='lighter';
+    for(var n=particles.length-1;n>=0;n--){
+      var q=particles[n]; q.t+=q.sp*(hover===q.i?1.5:1)*(dt/16.7);
+      if(q.t>=1){ energy=Math.min(1.6,energy+0.10); particles.splice(n,1); continue; }
+      var e=ease(q.t), p2=pts[q.i];
+      // travel from node to core, with slight perpendicular wobble that fades near core
+      var bx=p2.x+(cx-p2.x)*e, by=p2.y+(cy-p2.y)*e;
+      var nx=-(cy-p2.y), ny=(cx-p2.x); var nl=Math.hypot(nx,ny)||1; nx/=nl; ny/=nl;
+      var w=Math.sin(q.t*6+q.ph)*q.wob*10*(1-e);
+      var x=bx+nx*w, y=by+ny*w;
+      var al=Math.min(1,q.t*3)*(1-q.t*0.5);
+      var c=q.col;
+      var rad=q.sz*(1+e*1.4);
+      var rg=ctx.createRadialGradient(x,y,0,x,y,rad*4);
+      rg.addColorStop(0,'rgba('+c[0]+','+c[1]+','+c[2]+','+al+')');
+      rg.addColorStop(1,'rgba('+c[0]+','+c[1]+','+c[2]+',0)');
+      ctx.fillStyle=rg; ctx.beginPath(); ctx.arc(x,y,rad*4,0,7); ctx.fill();
+    }
+
+    // core glow driven by arriving energy
+    energy=Math.max(0,energy-dt/1400);
+    var pulse=0.5+0.5*Math.sin(now/650);
+    var cr=46+energy*26+pulse*4;
+    var cg=ctx.createRadialGradient(cx,cy,0,cx,cy,cr);
+    cg.addColorStop(0,'rgba(47,224,166,'+(0.45+energy*0.3)+')');
+    cg.addColorStop(0.5,'rgba(47,224,166,0.12)');
+    cg.addColorStop(1,'rgba(47,224,166,0)');
+    ctx.fillStyle=cg; ctx.beginPath(); ctx.arc(cx,cy,cr,0,7); ctx.fill();
+    ctx.globalCompositeOperation='source-over';
+
+    requestAnimationFrame(draw);
+  }
+
+  function start(){
+    if(running)return; running=true; t0=performance.now();
+    requestAnimationFrame(draw);
+  }
+  function stop(){ running=false; }
+
+  // static composed frame for reduced motion
+  function paintStatic(){
+    progress=1; ctx.clearRect(0,0,W,H);
+    for(var i=0;i<pts.length;i++){var p=pts[i];
+      var g=ctx.createLinearGradient(cx,cy,p.x,p.y);
+      g.addColorStop(0,'rgba(47,224,166,.34)'); g.addColorStop(1,'rgba(90,183,230,.12)');
+      ctx.strokeStyle=g; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(cx,cy); ctx.lineTo(p.x,p.y); ctx.stroke();
+    }
+    var cg=ctx.createRadialGradient(cx,cy,0,cx,cy,60);
+    cg.addColorStop(0,'rgba(47,224,166,.5)'); cg.addColorStop(1,'rgba(47,224,166,0)');
+    ctx.fillStyle=cg; ctx.beginPath(); ctx.arc(cx,cy,60,0,7); ctx.fill();
+  }
+
+  // node hover
+  nodes.forEach(function(n,i){
+    n.addEventListener('mouseenter',function(){hover=i;});
+    n.addEventListener('mouseleave',function(){hover=-1;});
+  });
+
+  // 3D parallax tilt
+  if(!reduce){
+    wrap.addEventListener('pointermove',function(e){
+      var r=wrap.getBoundingClientRect();
+      var px=(e.clientX-r.left)/r.width-0.5, py=(e.clientY-r.top)/r.height-0.5;
+      stage.style.transform='rotateY('+(px*9)+'deg) rotateX('+(-py*9)+'deg)';
+    });
+    wrap.addEventListener('pointerleave',function(){stage.style.transform='';});
+  }
+
+  function relayout(){ layout(); if(reduce) paintStatic(); }
+  requestAnimationFrame(function(){ requestAnimationFrame(relayout); });
+  addEventListener('resize',relayout);
+  addEventListener('load',relayout);
+
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        layout();
+        if(!lit){ lit=true; wrap.classList.add('lit'); }
+        if(reduce){ paintStatic(); } else { start(); }
+      } else { stop(); }
+    });
+  },{threshold:0.25});
+  io.observe(wrap);
+})();
+</script>
+</body>
+</html>

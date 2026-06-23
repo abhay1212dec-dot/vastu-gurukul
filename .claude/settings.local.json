@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell($zip = \"C:\\\\Users\\\\Abhay\\\\Downloads\\\\files.zip\"; if \\(Test-Path $zip\\) { Add-Type -AssemblyName System.IO.Compression.FileSystem; $archive = [System.IO.Compression.ZipFile]::OpenRead\\($zip\\); $archive.Entries | Select-Object FullName, Length | Format-Table -AutoSize; $archive.Dispose\\(\\) } else { \"ZIP NOT FOUND\" })",
+      "PowerShell(try { $p = Invoke-WebRequest \"http://localhost:8080/index.html\" -UseBasicParsing -TimeoutSec 5; \"PAGE: $\\($p.StatusCode\\)\" } catch { Set-Location \"C:\\\\Users\\\\Abhay\\\\OneDrive\\\\Desktop\\\\MONICA MAHAVASTU\"; Start-Process python -ArgumentList \"-m\",\"http.server\",\"8080\" -WindowStyle Hidden; Start-Sleep -Seconds 2; $p = Invoke-WebRequest \"http://localhost:8080/index.html\" -UseBasicParsing -TimeoutSec 5; \"PAGE \\(restarted\\): $\\($p.StatusCode\\)\" })"
+    ]
+  }
+}
