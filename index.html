@@ -3,8 +3,14 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Vastu Gurukul - Learn Astro Vastu, MahaVastu &amp; Numerology</title>
-<meta name="description" content="Vastu Gurukul is a founder-led education platform by Acharya Monica for learning Astro Vastu, MahaVastu, Numerology and practical space reading." />
+<title>Vastu Gurukul - Learn How To Do Vastu, Step By Step (Live Online Courses)</title>
+<meta name="description" content="Live online Vastu courses by Acharya Monica for moms, homemakers and beginners. Learn to read homes, floor plans, directions, remedies, Astro Vastu and Numerology - practically, without demolition. First batch coming soon - join the waitlist." />
+<meta property="og:title" content="Vastu Gurukul - Learn How To Do Vastu, Step By Step" />
+<meta property="og:description" content="Live online Vastu courses by Acharya Monica for beginners. 5-course journey from foundations to live case practice. First batch coming soon - join the waitlist." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://vastugurukul.co.in" />
+<meta property="og:image" content="https://vastugurukul.co.in/images/monica-portrait.png" />
+<meta name="theme-color" content="#0E8F6B" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -213,6 +219,75 @@
   .consult-box h2{font-size:clamp(26px,3.2vw,38px);}
   .consult-box p{max-width:62ch;margin:12px 0 0;color:var(--slate);}
 
+  /* ---------- hero trust badges ---------- */
+  .trust-badges{list-style:none;padding:0;margin:26px 0 0;display:flex;flex-wrap:wrap;gap:10px;}
+  .trust-badges li{
+    font-size:13px;font-weight:600;letter-spacing:.01em;color:var(--emerald);
+    padding:8px 14px;border-radius:999px;border:1px solid rgba(21,168,123,.32);
+    background:rgba(21,168,123,.07);
+  }
+  .trust-badges li::before{content:"✓";margin-right:7px;color:var(--mint);font-weight:700;}
+
+  /* ---------- course cards ---------- */
+  .course-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .course{
+    display:flex;flex-direction:column;background:#fff;
+    border:1px solid var(--line);border-radius:18px;padding:28px 26px;transition:.3s ease;
+  }
+  .course:hover{border-color:rgba(21,168,123,.5);transform:translateY(-4px);box-shadow:0 20px 46px -30px rgba(10,30,48,.5);}
+  .course-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+  .course .no{font-family:var(--display);font-size:14px;color:var(--sky);letter-spacing:.04em;}
+  .course .lvl{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--emerald);background:rgba(21,168,123,.1);padding:5px 10px;border-radius:999px;}
+  .course h3{font-size:21px;margin-bottom:9px;}
+  .course>p{font-size:14.5px;color:var(--slate);margin:0 0 18px;}
+  .course-meta{list-style:none;padding:0;margin:0 0 20px;display:grid;gap:8px;border-top:1px solid var(--line);padding-top:16px;}
+  .course-meta li{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;color:var(--cream);}
+  .course-meta li span{color:var(--slate);}
+  .course-cta{margin-top:auto;font-size:14.5px;font-weight:600;color:var(--emerald);transition:.2s ease;}
+  .course-cta:hover{color:var(--sky);letter-spacing:.01em;}
+  .course-cta-card{justify-content:center;align-items:flex-start;background:linear-gradient(150deg,rgba(21,168,123,.09),rgba(46,146,204,.08));border-style:dashed;}
+  .course-cta-card .btn{margin-top:14px;}
+
+  /* ---------- waitlist ---------- */
+  .waitlist{background:linear-gradient(160deg,#08203A 0%,#0B3050 100%);color:var(--cream-light);border-top:1px solid var(--line);}
+  .waitlist .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center;}
+  .waitlist h2{font-size:clamp(30px,4vw,46px);}
+  .waitlist .eyebrow{color:var(--mint);}
+  .waitlist .intro p{color:#CFDDE5;margin-top:16px;}
+  .waitlist .perks{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:11px;}
+  .waitlist .perks li{display:flex;gap:11px;font-size:14.5px;color:#CFDDE5;}
+  .waitlist .perks li::before{content:"✓";color:var(--mint);font-weight:700;flex:none;}
+  .wait-form{
+    background:rgba(255,255,255,.04);border:1px solid rgba(234,242,238,.16);border-radius:20px;
+    padding:30px 28px;backdrop-filter:blur(4px);
+  }
+  .wait-form .row{display:grid;gap:7px;margin-bottom:16px;}
+  .wait-form .row.two{grid-template-columns:1fr 1fr;gap:14px;}
+  .wait-form .two .row{margin:0;}
+  .wait-form label{font-size:12.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--slate-light);}
+  .wait-form input,.wait-form select{
+    width:100%;font-family:var(--body);font-size:15px;color:var(--cream-light);
+    background:rgba(7,24,43,.5);border:1px solid rgba(234,242,238,.18);border-radius:10px;padding:12px 14px;
+    transition:.2s ease;
+  }
+  .wait-form input::placeholder{color:#7C93A2;}
+  .wait-form input:focus,.wait-form select:focus{outline:none;border-color:var(--mint);background:rgba(7,24,43,.75);}
+  .wait-form select option{color:#0C2233;}
+  .wait-form .btn{width:100%;margin-top:6px;}
+  .wait-form .formnote{font-size:12px;color:var(--slate-light);margin:14px 0 0;text-align:center;}
+
+  /* ---------- faq ---------- */
+  .faq-list{max-width:820px;margin:0 auto;display:grid;gap:14px;}
+  .faq-item{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden;}
+  .faq-item summary{
+    list-style:none;cursor:pointer;padding:20px 24px;font-family:var(--display);font-size:18px;color:var(--cream);
+    display:flex;justify-content:space-between;align-items:center;gap:16px;
+  }
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-item summary::after{content:"+";font-size:24px;color:var(--mint);font-family:var(--body);transition:.2s ease;flex:none;}
+  .faq-item[open] summary::after{transform:rotate(45deg);}
+  .faq-item .ans{padding:0 24px 22px;font-size:15px;color:var(--slate);}
+
   /* ---------- testimonials ---------- */
   .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
   .quote{border:1px solid var(--line);border-radius:16px;padding:30px 28px;background:linear-gradient(160deg,rgba(21,168,123,.05),transparent);}
@@ -330,6 +405,8 @@
     .hero-figure{right:-2%;width:min(50vw,500px);height:min(46svh,420px);opacity:.95;}
     .proof-grid{grid-template-columns:1fr;}
     .consult-box{grid-template-columns:1fr;}
+    .course-grid{grid-template-columns:1fr 1fr;}
+    .waitlist .wrap{grid-template-columns:1fr;gap:36px;}
     .hero h1{max-width:11ch;}
     .nav-cta{display:none;}
   }
@@ -347,6 +424,11 @@
     .hero .lead{max-width:100%;font-size:16.5px;}
     .hero-actions{margin-top:22px;}
     .btn{padding:13px 20px;font-size:14px;}
+    .course-grid{grid-template-columns:1fr;}
+    .wait-form .row.two{grid-template-columns:1fr;gap:0;}
+    .wait-form .two .row{margin-bottom:16px;}
+    .trust-badges{gap:8px;}
+    .trust-badges li{font-size:12px;padding:7px 11px;}
   }
   @media(prefers-reduced-motion:reduce){
     .ring-rotate{animation:none;}
@@ -367,7 +449,7 @@
     </svg>
     <span>Vastu Gurukul<br><small>School of Astro Vastu &amp; MahaVastu</small></span>
   </a>
-  <a class="nav-cta" href="#contact">Apply for next batch</a>
+  <a class="nav-cta" href="#waitlist">Join the waitlist</a>
 </nav>
 
 <!-- HERO -->
@@ -422,13 +504,20 @@
 
   <div class="hero-inner">
     <div class="wrap">
-      <span class="eyebrow reveal">Astro Vastu, MahaVastu &amp; Numerology education</span>
-      <h1 class="reveal">Learn Vastu as a <em>complete system.</em></h1>
-      <p class="lead reveal">Vastu Gurukul is a founder-led learning platform where students study space, direction, birth charts, numbers and practical remedies together under Acharya Monica.</p>
+      <span class="eyebrow reveal">Live online Vastu courses · First batch coming soon</span>
+      <h1 class="reveal">Learn how to do Vastu, <em>step by step.</em></h1>
+      <p class="lead reveal">Live online courses by Acharya Monica for moms, homemakers and beginners who want to understand Vastu practically — for their own home first, without confusion or demolition.</p>
       <div class="hero-actions reveal">
-        <a class="btn btn-primary" href="#programs">Explore learning programs</a>
-        <a class="btn btn-ghost" href="#consultation">Invite-only consultation</a>
+        <a class="btn btn-primary" href="#waitlist">Join the waitlist</a>
+        <a class="btn btn-ghost" href="#programs">View the 5-course journey</a>
       </div>
+      <ul class="trust-badges reveal" aria-label="Course highlights">
+        <li>Beginner friendly</li>
+        <li>No prior Vastu knowledge needed</li>
+        <li>Live + recordings</li>
+        <li>Worksheets &amp; floor-plan practice</li>
+        <li>Hindi &amp; English</li>
+      </ul>
       <img class="hero-photo-mobile reveal" src="images/classroom-hero.png" alt="Vastu Gurukul classroom with adult learners studying floor plans and Vastu diagrams" />
     </div>
   </div>
@@ -437,9 +526,9 @@
 <!-- POSITIONING STRIP -->
 <section class="strip">
   <div class="wrap">
-    <div class="cell"><div class="k">Founder-led</div><div class="v">Learn directly from Acharya Monica and her applied method</div></div>
-    <div class="cell"><div class="k">6 sciences</div><div class="v">Astrology, Numerology, Vedic Science, Vastu, Astro Vastu &amp; Angel Cards</div></div>
-    <div class="cell"><div class="k">Case-based</div><div class="v">Practice on floor plans, remedies and real-life space problems</div></div>
+    <div class="cell"><div class="k">5 live courses</div><div class="v">A step-by-step path from Vastu foundations to live case practice</div></div>
+    <div class="cell"><div class="k">Taught live</div><div class="v">Online classes by Acharya Monica — with recordings &amp; worksheets</div></div>
+    <div class="cell"><div class="k">For beginners</div><div class="v">Built for moms, homemakers &amp; first-time learners — start from zero</div></div>
   </div>
 </section>
 
@@ -447,10 +536,10 @@
 <section class="sec" id="what">
   <div class="wrap explain">
     <div class="copy reveal">
-      <span class="eyebrow">What you learn</span>
-      <h2>Move beyond tips. Learn how to read a space.</h2>
-      <p class="lead">Most people collect scattered Vastu rules from videos and family advice. Vastu Gurukul teaches the deeper structure: how directions, elements, charts, numbers and remedies work together in one reading.</p>
-      <p class="muted">Students learn how to divide a space into zones, understand the energy of each direction, read floor plans, connect a space to the person living or working there, and choose practical remedies that do not require demolition.</p>
+      <span class="eyebrow">Why most Vastu advice confuses you</span>
+      <h2>Stop collecting tips. Learn to read your own home.</h2>
+      <p class="lead">Most people gather scattered Vastu rules from videos and family advice — and end up more confused. Vastu Gurukul teaches the actual structure: how directions, zones, floor plans, numbers and remedies fit together so you can read a space yourself.</p>
+      <p class="muted">You'll learn to divide a home into zones, understand the energy of each direction, read a floor plan room by room, and choose simple, practical remedies that need no demolition — starting with your own home.</p>
     </div>
 
     <div class="compass-card reveal">
@@ -599,8 +688,8 @@
       </div>
       <div class="card reveal">
         <span class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1" stroke="#2FE0A6" stroke-width="1.4" stroke-linecap="round"/><circle cx="12" cy="12" r="3" stroke="#2FE0A6" stroke-width="1.4"/></svg></span>
-        <h3>Enter mentorship</h3>
-        <p>Students who want deeper application can move into smaller guided groups with reviews, doubt clearing and live case discussion.</p>
+        <h3>Practice live</h3>
+        <p>Bring your own doubts and real homes into live case-practice sessions with Acharya Monica — until reading a space feels natural.</p>
       </div>
     </div>
   </div>
@@ -629,15 +718,71 @@
 <section class="sec services" id="programs">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">Learning programs</span>
-      <h2>Choose the path that matches your depth.</h2>
-      <p class="muted">Start where you are. Each track builds on the one before it — from your first principles to applied, mentor-guided practice.</p>
+      <span class="eyebrow">The 5-course journey</span>
+      <h2>Vastu Gurukul Live Course Series.</h2>
+      <p class="muted">Five live courses that take you from complete beginner to confidently reading a home — directions, floor plans, remedies, Astro Vastu and Numerology, step by step.</p>
     </div>
-    <div class="svc-grid">
-      <div class="svc reveal"><div class="no">01</div><h3>Foundation Program</h3><p>For beginners who want a structured introduction to directions, elements, zones, Vastu logic and the language of space.</p><span class="meta">Start here</span></div>
-      <div class="svc reveal"><div class="no">02</div><h3>Astro Vastu Practitioner Track</h3><p>For serious learners who want to combine floor plans, birth charts, planetary influence and practical remedy decisions.</p><span class="meta">Core track</span></div>
-      <div class="svc reveal"><div class="no">03</div><h3>Numerology &amp; Space Reading</h3><p>For students who want to understand how numbers, names, dates and spatial energy can be read together with discipline.</p><span class="meta">Specialized</span></div>
-      <div class="svc reveal"><div class="no">04</div><h3>Mentorship Circle</h3><p>Small-group guidance for applied case studies, doubt clearing and deeper practice with Monica once the foundation is clear.</p><span class="meta">Application based</span></div>
+    <div class="course-grid">
+      <div class="course reveal">
+        <div class="course-top"><span class="no">Course 01</span><span class="lvl">Beginner</span></div>
+        <h3>Vastu Foundations</h3>
+        <p>Directions, the five elements, the 16 zones and the basic principles every reading is built on.</p>
+        <ul class="course-meta">
+          <li><span>Format</span>Live online</li>
+          <li><span>Duration</span>Coming soon</li>
+          <li><span>Includes</span>Recording + worksheet</li>
+        </ul>
+        <a class="course-cta" href="#waitlist">Notify me →</a>
+      </div>
+      <div class="course reveal">
+        <div class="course-top"><span class="no">Course 02</span><span class="lvl">Beginner</span></div>
+        <h3>How to Read a Floor Plan</h3>
+        <p>Entrances, bedrooms, kitchen, toilets, the temple and office areas — read room by room.</p>
+        <ul class="course-meta">
+          <li><span>Format</span>Live online</li>
+          <li><span>Duration</span>Coming soon</li>
+          <li><span>Includes</span>Recording + worksheet</li>
+        </ul>
+        <a class="course-cta" href="#waitlist">Notify me →</a>
+      </div>
+      <div class="course reveal">
+        <div class="course-top"><span class="no">Course 03</span><span class="lvl">Beginner</span></div>
+        <h3>Remedies Without Demolition</h3>
+        <p>Colours, elements, placement and corrections — practical fixes for a real home, no breaking walls.</p>
+        <ul class="course-meta">
+          <li><span>Format</span>Live online</li>
+          <li><span>Duration</span>Coming soon</li>
+          <li><span>Includes</span>Recording + worksheet</li>
+        </ul>
+        <a class="course-cta" href="#waitlist">Notify me →</a>
+      </div>
+      <div class="course reveal">
+        <div class="course-top"><span class="no">Course 04</span><span class="lvl">Intermediate</span></div>
+        <h3>Astro Vastu &amp; Numerology Basics</h3>
+        <p>How your birth chart, numbers and the energy of a space connect into one combined reading.</p>
+        <ul class="course-meta">
+          <li><span>Format</span>Live online</li>
+          <li><span>Duration</span>Coming soon</li>
+          <li><span>Includes</span>Recording + worksheet</li>
+        </ul>
+        <a class="course-cta" href="#waitlist">Notify me →</a>
+      </div>
+      <div class="course reveal">
+        <div class="course-top"><span class="no">Course 05</span><span class="lvl">Intermediate</span></div>
+        <h3>Live Case Practice</h3>
+        <p>Real examples, your own doubts and guided analysis of actual homes, live with Acharya Monica.</p>
+        <ul class="course-meta">
+          <li><span>Format</span>Live online</li>
+          <li><span>Duration</span>Coming soon</li>
+          <li><span>Includes</span>Live Q&amp;A + recording</li>
+        </ul>
+        <a class="course-cta" href="#waitlist">Notify me →</a>
+      </div>
+      <div class="course course-cta-card reveal">
+        <h3>Not sure where to start?</h3>
+        <p>Most people begin with Course 01 and learn for their own home first. Join the waitlist and we'll guide you to the right starting point.</p>
+        <a class="btn btn-primary" href="#waitlist">Join the waitlist</a>
+      </div>
     </div>
   </div>
 </section>
@@ -651,7 +796,7 @@
         <h2>Need Monica to read your own space?</h2>
         <p>Beyond the classroom, Acharya Monica takes a limited number of private consultations for students, families and business owners who want their own space read directly — by request.</p>
       </div>
-      <a class="btn btn-ghost" href="#contact">Request an invitation</a>
+      <a class="btn btn-ghost" href="#waitlist">Request private consultation</a>
     </div>
   </div>
 </section>
@@ -684,27 +829,103 @@
   </div>
 </section>
 
+<!-- FAQ -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="sec-head reveal" style="text-align:center;margin-left:auto;margin-right:auto;">
+      <span class="eyebrow" style="justify-content:center;">Common questions</span>
+      <h2>Beginner doubts, answered.</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item reveal"><summary>I'm a complete beginner. Is this for me?</summary><div class="ans">Yes — the courses are built specifically for beginners, moms and homemakers. No prior Vastu knowledge is needed. You start from the very basics and learn step by step.</div></details>
+      <details class="faq-item reveal"><summary>Are the classes live or recorded?</summary><div class="ans">Classes are taught live online by Acharya Monica, so you can ask questions in real time. Every session is also recorded, so you can rewatch anytime if you miss a class.</div></details>
+      <details class="faq-item reveal"><summary>What language are the courses in?</summary><div class="ans">Classes are taught in a mix of Hindi and English so they're easy to follow for most learners across India.</div></details>
+      <details class="faq-item reveal"><summary>Can I use this for my own home?</summary><div class="ans">Absolutely — that's the whole point. You'll learn to read and correct your own home first, using simple remedies that need no demolition. Many students later go on to read for family and friends too.</div></details>
+      <details class="faq-item reveal"><summary>When does the first batch start?</summary><div class="ans">The first live batch is coming soon. Join the waitlist and we'll notify you the moment dates, fees and enrolment open — waitlist members get early access.</div></details>
+      <details class="faq-item reveal"><summary>Do I get worksheets or practice material?</summary><div class="ans">Yes. Courses include worksheets and floor-plan practice so you actually apply what you learn, not just watch.</div></details>
+      <details class="faq-item reveal"><summary>I just need my own home checked — not a course.</summary><div class="ans">Acharya Monica also offers a limited number of private consultations. See the <a href="#consultation" style="color:var(--emerald);">consultation section</a> above, or mention it when you join the waitlist.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- WAITLIST -->
+<section class="sec waitlist" id="waitlist">
+  <div class="wrap">
+    <div class="intro reveal">
+      <span class="eyebrow">First live batch</span>
+      <h2>Join the waitlist.</h2>
+      <p>Be first in line when the first live batch opens. Waitlist members get early access, batch dates and fees before anyone else — no payment now, no obligation.</p>
+      <ul class="perks">
+        <li>Taught live by Acharya Monica</li>
+        <li>Early access &amp; priority seat in the first batch</li>
+        <li>Beginner friendly — learn for your own home first</li>
+        <li>Recordings &amp; worksheets included</li>
+        <li>Updates on WhatsApp</li>
+      </ul>
+    </div>
+
+    <!-- Formspree: create a free form at https://formspree.io and replace YOUR_FORM_ID below -->
+    <form class="wait-form reveal" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <div class="row">
+        <label for="wf-name">Name</label>
+        <input id="wf-name" type="text" name="name" placeholder="Your full name" required />
+      </div>
+      <div class="row two">
+        <div class="row">
+          <label for="wf-wa">WhatsApp number</label>
+          <input id="wf-wa" type="tel" name="whatsapp" placeholder="+91 ..." required />
+        </div>
+        <div class="row">
+          <label for="wf-city">City</label>
+          <input id="wf-city" type="text" name="city" placeholder="e.g. Gurugram" required />
+        </div>
+      </div>
+      <div class="row">
+        <label for="wf-level">Where are you right now?</label>
+        <select id="wf-level" name="level" required>
+          <option value="" disabled selected>Select one</option>
+          <option>Complete beginner</option>
+          <option>Already learning Vastu</option>
+        </select>
+      </div>
+      <div class="row">
+        <label for="wf-goal">Interested in</label>
+        <select id="wf-goal" name="interest" required>
+          <option value="" disabled selected>Select one</option>
+          <option>Learning for my own home</option>
+          <option>Building a career / practice</option>
+          <option>A private consultation</option>
+          <option>General learning</option>
+        </select>
+      </div>
+      <input type="hidden" name="_subject" value="New Vastu Gurukul waitlist signup" />
+      <button class="btn btn-primary" type="submit">Join the waitlist for the first batch</button>
+      <p class="formnote">No payment now. We'll only message you about the first batch.</p>
+    </form>
+  </div>
+</section>
+
 <!-- CONTACT / FOOTER -->
 <section class="contact" id="contact">
   <div class="wrap">
-    <span class="eyebrow reveal" style="justify-content:center;">Begin learning</span>
-    <h2 class="reveal">Apply for the next Vastu Gurukul batch.</h2>
-    <p class="lead reveal">Share your learning goal, current background and the level you want to study. Vastu Gurukul can guide you toward the right program or mentorship path.</p>
+    <span class="eyebrow reveal" style="justify-content:center;">Coming soon</span>
+    <h2 class="reveal">Be in the first Vastu Gurukul batch.</h2>
+    <p class="lead reveal">The first live online batch is opening soon. Join the waitlist for early access to dates and fees, or request a private consultation if you'd rather have Monica read your space directly.</p>
     <div class="contact-actions reveal">
-      <a class="btn btn-primary" href="#">Apply for learning programs</a>
-      <a class="btn btn-ghost" href="#consultation">Ask about consultation</a>
+      <a class="btn btn-primary" href="#waitlist">Join the waitlist</a>
+      <a class="btn btn-ghost" href="#consultation">Request private consultation</a>
     </div>
-    <p class="note">Every enquiry is read personally — we'll guide you to the right program or batch.</p>
+    <p class="note">No payment now — waitlist members simply hear first when the batch opens.</p>
   </div>
   <footer>
     <div class="wrap">
       <span class="foot-brand">Vastu Gurukul</span>
       <div class="foot-links">
+        <a href="#programs">Courses</a>
         <a href="#about">About</a>
-        <a href="#programs">Programs</a>
-        <a href="#contact">Contact</a>
-        <a href="#" aria-label="Facebook">Facebook</a>
-        <a href="#" aria-label="LinkedIn">LinkedIn</a>
+        <a href="#faq">FAQ</a>
+        <a href="#waitlist">Join waitlist</a>
+        <a href="https://www.facebook.com/MahaVastuExpertMonica/" target="_blank" rel="noopener" aria-label="Facebook">Facebook</a>
       </div>
     </div>
   </footer>
